@@ -110,7 +110,7 @@ bool TVector<T>::operator==(const TVector &v) const
 template <class T> // сравнение
 bool TVector<T>::operator!=(const TVector &v) const
 {
-	return !(this == v);
+	return !(this == &v);
 } 
 
 template <class T> // присваивание
@@ -136,7 +136,7 @@ TVector<T>& TVector<T>::operator=(const TVector &v)
 template <class T> // прибавить скаляр
 TVector<T> TVector<T>::operator+(const T &val)
 {
-	TVector tmp = new TVector(size);
+	TVector tmp = TVector(size);
 
 	for (int i = 0; i < size; i++) {
 		tmp.pVector[i] = pVector[i] + val;
@@ -148,7 +148,7 @@ TVector<T> TVector<T>::operator+(const T &val)
 template <class T> // вычесть скаляр
 TVector<T> TVector<T>::operator-(const T &val)
 {
-	TVector tmp = new TVector(size);
+	TVector tmp = TVector(size);
 
 	for (int i = 0; i < size; i++) {
 		tmp.pVector[i] = pVector[i] - val;
@@ -160,7 +160,7 @@ TVector<T> TVector<T>::operator-(const T &val)
 template <class T> // умножить на скаляр
 TVector<T> TVector<T>::operator*(const T &val)
 {
-	TVector tmp = new TVector(size);
+	TVector tmp = TVector(size);
 
 	for (int i = 0; i < size; i++) {
 		tmp.pVector[i] = pVector[i] * val;
