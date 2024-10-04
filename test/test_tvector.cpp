@@ -31,12 +31,21 @@ TEST(TVector, can_create_copied_vector)
 
 TEST(TVector, copied_vector_is_equal_to_source_one)
 {
-  ADD_FAILURE();
+	TVector<int> a(10), b(10);
+	for (int i = 0; i < 10; i++) {
+		a[i] = i * i;
+	}
+	ASSERT_NO_THROW(b = a);
+
+	EXPECT_EQ(a, b);
 }
 
 TEST(TVector, copied_vector_has_its_own_memory)
 {
-  ADD_FAILURE();
+	// изменить первый вектор, а копия остаётся неизменной
+	// удалить или изменить
+
+	ADD_FAILURE();
 }
 
 TEST(TVector, can_get_size)
@@ -56,13 +65,16 @@ TEST(TVector, can_get_start_index)
 TEST(TVector, can_set_and_get_element)
 {
   TVector<int> v(4);
-  v[0] = 4;
+  ASSERT_NO_THROW(v[0] = 4);  
 
   EXPECT_EQ(4, v[0]);
 }
 
 TEST(TVector, throws_when_set_element_with_negative_index)
 {
+	TVector<int> a(10);
+
+	ASSERT_ANY_THROW()
   ADD_FAILURE();
 }
 
@@ -133,7 +145,13 @@ TEST(TVector, cant_add_vectors_with_not_equal_size)
 
 TEST(TVector, can_subtract_vectors_with_equal_size)
 {
-  ADD_FAILURE();
+	TVector<int> a(10), b(20), res(10), c(10);
+	// присвоить значения a, b
+	// присвоить правильные результаты res
+
+	ASSERT_NO_THROW(c = a - b);
+
+	ADD_FAILURE();
 }
 
 TEST(TVector, cant_subtract_vectors_with_not_equal_size)
