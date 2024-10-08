@@ -119,9 +119,10 @@ TVector<T>& TVector<T>::operator=(const TVector &v)
 	if (this == &v) return *this;
 
 	if (size != v.size) {
+		T* tmp = new T[v.size];
 		delete[] pVector;
 
-		pVector = new T[v.size];
+		pVector = tmp
 		size = v.size;
 	}
 
