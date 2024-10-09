@@ -100,11 +100,11 @@ TEST(TVector, can_assign_vector_to_itself)
 	for (int i = 0; i < 10; i++) {
 		a[i] = i * i;
 	}
-	ASSERT_NO_THROW(a = a);
 
-	for (int i = 0; i < 10; i++) {
-		EXPECT_EQ(a[i], i * i);
-	}
+	TVector<int> a_copy(a);
+
+	ASSERT_NO_THROW(a = a);
+	EXPECT_EQ(a, a_copy);
 }
 
 TEST(TVector, can_assign_vectors_of_equal_size)
@@ -129,7 +129,7 @@ TEST(TVector, assign_operator_change_vector_size)
 	EXPECT_NE(a_size_1, a_size_2);
 }
 
-TEST(TVector, can_assign_vectors_of_different_size)	// ???
+TEST(TVector, can_assign_vectors_of_different_size)
 {
 	TVector<int> a(10), b(20);
 	for (int i = 0; i < 10; i++) {
@@ -239,10 +239,6 @@ TEST(TVector, can_add_vectors_with_equal_size)
 TEST(TVector, cant_add_vectors_with_not_equal_size)
 {
 	TVector<int> a(10), b(12), res(10);
-	for (int i = 0; i < 10; i++) {
-		a[i] = i * i;
-		b[i] = i;
-	}
 
 	ASSERT_ANY_THROW(res = a + b);
 }
@@ -265,10 +261,6 @@ TEST(TVector, can_subtract_vectors_with_equal_size)
 TEST(TVector, cant_subtract_vectors_with_not_equal_size)
 {
 	TVector<int> a(10), b(12), res(10);
-	for (int i = 0; i < 10; i++) {
-		a[i] = i * i;
-		b[i] = i;
-	}
 
 	ASSERT_ANY_THROW(res = a - b);
 }
@@ -295,12 +287,7 @@ TEST(TVector, can_multiply_vectors_with_equal_size)
 TEST(TVector, cant_multiply_vectors_with_not_equal_size)
 {
 	TVector<int> a(10), b(12);
-	for (int i = 0; i < 10; i++) {
-		a[i] = i * i;
-		b[i] = i;
-	}
 
 	int res = 0;
 	ASSERT_ANY_THROW(res = a * b);
 }
-

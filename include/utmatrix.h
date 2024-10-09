@@ -122,7 +122,7 @@ TVector<T>& TVector<T>::operator=(const TVector &v)
 		T* tmp = new T[v.size];
 		delete[] pVector;
 
-		pVector = tmp
+		pVector = tmp;
 		size = v.size;
 	}
 
