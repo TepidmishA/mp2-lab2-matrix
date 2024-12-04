@@ -175,18 +175,16 @@ TEST(TVector, vectors_with_different_size_are_not_equal)
 
 TEST(TVector, can_add_scalar_to_vector)
 {
-	TVector<int> a(10), res(10);
+	int val = 10;
+	TVector<int> a(10), res_check(10), res;
 	for (int i = 0; i < 10; i++) {
 		a[i] = i * i;
+		res_check[i] = i * i + val;
 	}
-
-	int val = 10;
 
 	ASSERT_NO_THROW(res = a + 10);
 
-	for (int i = 0; i < 10; i++) {
-		EXPECT_TRUE(res[i] == a[i] + val);
-	}
+	EXPECT_EQ(res_check, res);
 }
 
 TEST(TVector, can_subtract_scalar_from_vector)
@@ -249,6 +247,7 @@ TEST(TVector, can_subtract_vectors_with_equal_size)
 	for (int i = 0; i < 10; i++) {
 		a[i] = i * i;
 		b[i] = i;
+		//res[i]=
 	}
 
 	ASSERT_NO_THROW(res = a - b);
